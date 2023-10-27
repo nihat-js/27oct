@@ -11,8 +11,7 @@ public $date;
 
 public function getAll()
 {
-        // $query = $this->db->select("*")->join("position name","employees.position=position.id")->get('test_employees', );
-        return null;
+        $query = $this->db->select("*")->left("test_positions name","test_employees.position=test_positions.id",'left')->get('test_employees', );
         return $query->result();
 }
 

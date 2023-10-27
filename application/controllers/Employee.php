@@ -4,12 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Welcome extends CI_Controller {
 
 
-	 public function get_data(){
-		$jobs =[
-			[ "name"=> 'Job 1', "value" =>'job1'  ],
-			[ "name"=> 'Job 2', "value" => 'job2'],
-		 ];
-	 }
+
 
 	public function index()
 	{
