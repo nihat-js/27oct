@@ -1,35 +1,35 @@
 <?php
-class Employee_model extends CI_Model {
-
-public $name;
-public $surname;
-public $startDate;
-public $position;
-public $salary;
-public $content;
-public $date;
-
-public function getAll()
-{
-        $query = $this->db->select("*")->left("test_positions name","test_employees.position=test_positions.id",'left')->get('test_employees', );
-        return $query->result();
-}
-
-public function insert_entry()
+class Employee_model extends CI_Model
 {
 
-        $this->date     = time();
+  public $first_name;
+  public $last_name;
+  public $start_date;
+  public $position;
+  public $salary;
+  private $created_at;
+  private $updated_at;
+  private $deleted_at;
 
-        $this->db->insert('entries', $this);
-}
+  public function getAll()
+  {
+    $query = $this->db->select("*")->where("deleted_at", NULL)->order_by("created_at","desc")->get('avh_employees');
+    return $query->result();
+  }
 
-public function update_entry()
-{
-        $this->title    = $_POST['title'];
-        $this->content  = $_POST['content'];
-        $this->date     = time();
+  public function insertOne($arr)
+  {
+    try {
+      $this->db->insert('avh_employees', $arr);
+    } catch (Exception $e) {
+      return $e;
+    }
+  }
 
-        $this->db->update('entries', $this, array('id' => $_POST['id']));
-}
-
+  public function update_entry()
+  {
+    // $this->title    = $_POST['title'];
+    // $this->content  = $_POST['content'];
+    // $this->db->update('entries', $this, array('id' => $_POST['id']));
+  }
 }

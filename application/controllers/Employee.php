@@ -1,25 +1,69 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Employee extends CI_Controller
+{
+
+  public function __construct()
+  {
+    parent::__construct();
+    $this->load->helper('url');
+    $this->load->model("Employee_model");
+    $this->load->model("Position_model");
+  }
 
 
 
+  public function all()
+  {
+    $data  = [];
+    $data['employees'] = $this->Employee_model->getAll();
+    $data['positions'] = $this->Position_model->getAll();
+    $this->load->view('employee/list', $data);
+  }
+  public function add()
+  {
+    $data  = [];
+    $data['positions'] = $this->Position_model->getAll();
+    $this->load->view('employee/add', $data);
+  }
+  public  function add_action()
+  {
 
-	public function index()
-	{
-		$this->load->view('employee/list.php');
-	}
-	public function add_data(){
+    if ($this->input->method(TRUE) != "POST") {
+      $this->output->set_status_header(400);
+    }
 
-	}
-	public  function add () {
-		$name = trim($this->input->post('name'));
-		$surname = trim($this->input->post('surname'));
-		$hired_date = $this->input->post('hired_date');
-		$salary = $this->input->post('salary');
-		$this->load->view('employee/add.php');
-	}
+    $first_name = $this->input->post('firstName');
+    $last_name = $this->input->post('lastName');
+    $start_date = $this->input->post('startDate');
+    $position = $this->input->post('position');
+    $salary = $this->input->post('salary');
 
-	
+
+
+    if (!$first_name || !$last_name || !$start_date || !$position || !$salary) {
+      echo "REQUIRED_FIELDS";
+      $this->output->set_status_header(400);
+      return false;
+    }
+
+    $first_name = trim($first_name);
+    $last_name = trim($last_name);
+
+    $arr  = [
+      'first_name' => $first_name,
+      'last_name' => $last_name,
+      'start_date' => $start_date,
+      'position' => $position,
+      'salary' => $salary,
+    ];
+
+    $hasError = $this->Employee_model->insertOne($arr);
+    if  ($hasError){
+      $this->output->set_status_header(404);
+      return false;
+    }
+    $this->output->set_status_header(201);
+  }
 }

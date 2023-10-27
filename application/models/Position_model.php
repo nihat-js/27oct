@@ -2,31 +2,31 @@
 class Position_model extends CI_Model
 {
 
-    // private $id;
-    // private $name;
-    // private $descrption;
-    // private $created_at;
+  // private $id;
+  // private $name;
+  // private $descrption;
+  // private $created_at;
 
-    // private $updated_at;
-
-
-    public function getAll()
-    {
-        $query = $this->db->get('test_positions', );
-        return $query->result();
-    }
-
-    // public function insert()
-    // {
+  // private $updated_at;
 
 
-    //     $this->db->insert('entries', $this);
-    // }
+  public function getAll()
+  {
+    $query = $this->db->get('avh_positions',);
+    return $query->result();
+  }
 
-    // public function update()
-    // {
+  // public function insert()
+  // {
 
-    //     // $this->db->update('entries', $this, array('id' => $_POST['id']));
-    // }
+
+  //     $this->db->insert('entries', $this);
+  // }
+
+  // public function update()
+  // {
+
+  //     // $this->db->update('entries', $this, array('id' => $_POST['id']));
+  // }
 
 }
