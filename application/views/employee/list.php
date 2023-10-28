@@ -13,6 +13,11 @@
       box-sizing: border-box;
     }
 
+    .filter{
+      max-width:800px;
+      margin : 2rem auto;
+    }
+
     table tbody tr .actions {
       opacity: 0;
     }
@@ -39,7 +44,7 @@
 
     input {
       border: 1px solid #ccc;
-      padding: 8px 12px;
+      padding: 6px 10px;
       border-radius: 6px;
     }
 
@@ -60,6 +65,13 @@
       cursor: pointer;
       padding: 4px 8px;
     }
+
+    .group.salary{
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      gap : 10px;
+    }
   </style>
 </head>
 
@@ -73,7 +85,7 @@
 
 
     <form class="filter" action="">
-      <h2> Filter </h2>
+      <h2 class="text-center mt-3"> Filter </h2>
       <div class="searchbar">
         <input type="text" class="fullName" name="fullName" placeholder="Full Name">
         <div class="suggestions ">
@@ -82,15 +94,15 @@
         </div>
       </div>
 
+
+      
       <div class="group salary">
-        <p>Salary </p>
-        <input type="number" name="salaryMin" placeholder="Min ">
-        <input type="number" name="salaryMax" placeholder=" Max ">
+        <input type="number" name="salaryMin" placeholder="Min Salary ">
+        <input type="number" name="salaryMax" placeholder=" Max Salary ">
       </div>
 
       <div class="group">
-        <p> Position </p>
-        <select name="position">
+        <select class="form-select" name="position" aria-label="Default select example">
           <option value="-1"> All </option>
           <?php foreach ($positions as $position): ?>
             <option value="<?= $position->id ?>">
@@ -233,7 +245,7 @@
             <td>  ${item.first_name} </td>
             <td> ${item.last_name} </td>
             <td>  ${item.start_date} </td>
-            <td> ${item.name} </td>
+            <td> ${item.position_name} </td>
             <td> ${item.salary}  </td>
             <td class="actions">
               <button onclick="handleDelete()" >

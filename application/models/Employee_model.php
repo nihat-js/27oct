@@ -95,7 +95,6 @@ class Employee_model extends CI_Model
     }
 
     if ($arr['position'] != -1) {
-      echo 'tester';
       $this->db->where('position', $arr['position']);
     }
 
