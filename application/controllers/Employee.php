@@ -27,6 +27,17 @@ class Employee extends CI_Controller
     $data['positions'] = $this->Position_model->getAll();
     $this->load->view('employee/add', $data);
   }
+  public function id($id){
+    echo "myid".$id;
+  }
+
+  public function delete($id){
+    if ($this->input->method(TRUE) != "POST"){
+      $this->output->set_status_header(400);
+    }
+    $this->Employee_model->deleteOne($id);
+  }
+  
   public function add_action()
   {
 
@@ -82,33 +93,29 @@ class Employee extends CI_Controller
   }
 
 
+  public function test(){
+    echo "test::";
+    echo gettype($this->input->post('yy0inp'));
+  }
+  
+
   public function search_full_action()
   {
-    $full_name = $this->input->post('fullName');
-    $full_name = trim($full_name);
-    $full_name_arr = explode(" ", $full_name);
-    $first_name = $full_name_arr[0];
-    $last_name = isset($full_name_arr[1]) ? $full_name_arr[1] : NULL;
-
-    $salary_min = $this->input->post('salaryMin');
-    $salary_max = $this->input->post('salaryMax');
-    $position = $this->input->post("position");
 
 
+    
 
     $arr = [
-      'first_name' => $first_name,
-      'last_name' => $last_name,
-      'salary_min' => $salary_min,
-      'salary_max' => $salary_max,
-      'position' => $position,
-
+      'first_name' => $this->input->post('firstName'),
+      'last_name' => $this->input->post('lastName'),
+      'salary_min' => $this->input->post('salaryMin'),
+      'salary_max' => $this->input->post('salaryMax'),
+      'position' => $this->input->post('position'),
     ];
 
-
-
-    $results = $this->Employee_model->search($arr);
+    $results = $this->Employee_model->searchFull($arr);
     echo json_encode($results);
+    
 
 
   }
