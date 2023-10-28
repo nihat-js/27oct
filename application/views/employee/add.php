@@ -64,7 +64,7 @@
       // for (var pair of formData.entries()) {
       //   console.log(pair[0] + ', ' + pair[1]);
       // }
-      formData.set("salary","yoxlamaq")
+      // formData.set("salary","yoxlamaq")
       let response = await fetch(base_url + "employee/add_action", {
         method: "post",
         body: formData,
