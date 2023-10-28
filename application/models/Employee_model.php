@@ -26,6 +26,10 @@ class Employee_model extends CI_Model
     }
   }
 
+  public function deleteOne($id){
+    // $query = $this->db->
+  }
+
   public function update_entry()
   {
     // $this->title    = $_POST['title'];

@@ -66,4 +66,10 @@ class Employee extends CI_Controller
     }
     $this->output->set_status_header(201);
   }
+
+  public function search_action($){
+    
+
+  }
+
 }
